@@ -1,0 +1,7 @@
+﻿  Source.cpp
+c:\users\paharevsky\source\repos\battle\battle\source.cpp(24): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
+c:\users\paharevsky\source\repos\battle\battle\source.cpp(35): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+c:\users\paharevsky\source\repos\battle\battle\source.cpp(36): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+c:\users\paharevsky\source\repos\battle\battle\source.cpp(37): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+c:\users\paharevsky\source\repos\battle\battle\source.cpp(38): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  Battle.vcxproj -> C:\Users\paharevsky\source\repos\Battle\x64\Debug\Battle.exe
