@@ -7,6 +7,8 @@ int main()
 {
 	RenderWindow window(VideoMode(800, 800), "it works!");
 
+	float CurrentFrame = 0;
+
 	Clock clock;
 
 	Image hero_image;
@@ -17,6 +19,7 @@ int main()
 
 	Sprite hero_sprite;
 	hero_sprite.setTexture(hero_texture);
+	hero_sprite.setTextureRect(IntRect(0, 100, 100, 100));
 	hero_sprite.setPosition(0, 0);
 
 	while (window.isOpen())
@@ -32,13 +35,38 @@ int main()
 				window.close();
 		}
 
-		if (Keyboard::isKeyPressed(Keyboard::Left)) { hero_sprite.move(-0.1*time, 0); }
-		if (Keyboard::isKeyPressed(Keyboard::Right)) { hero_sprite.move(0.1*time, 0); }
-		if (Keyboard::isKeyPressed(Keyboard::Up)) { hero_sprite.move(0, -0.1*time); }
-		if (Keyboard::isKeyPressed(Keyboard::Down)) { hero_sprite.move(0, 0.1*time); }
-
-		if (Mouse::isButtonPressed(Mouse::Left)) { hero_sprite.setColor(Color::Red); }
-		if (Mouse::isButtonPressed(Mouse::Right)) { hero_sprite.setColor(Color::Green); }
+		if (Keyboard::isKeyPressed(Keyboard::Left)) 
+		{
+			CurrentFrame += 0.005 * time;
+			if (CurrentFrame > 6)
+				CurrentFrame -= 6;
+			hero_sprite.setTextureRect(IntRect(100 * int(CurrentFrame), 300, 100, 100));
+			hero_sprite.move(-0.1 * time, 0);
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Right)) 
+		{
+			CurrentFrame += 0.005 * time;
+			if (CurrentFrame > 6)
+				CurrentFrame -= 6;
+			hero_sprite.move(0.1*time, 0); 
+			hero_sprite.setTextureRect(IntRect(100 * int(CurrentFrame), 100, 100, 100));
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Up)) 
+		{
+			CurrentFrame += 0.005 * time;
+			if (CurrentFrame > 6)
+				CurrentFrame -= 6;
+			hero_sprite.move(0, -0.1*time); 
+			hero_sprite.setTextureRect(IntRect(100 * int(CurrentFrame), 200, 100, 100));
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Down))
+		{
+			CurrentFrame += 0.005 * time;
+			if (CurrentFrame > 6)
+				CurrentFrame -= 6;
+			hero_sprite.move(0, 0.1*time); 
+			hero_sprite.setTextureRect(IntRect(100 * int(CurrentFrame), 0, 100, 100));
+		}
 
 		window.clear();
 		window.draw(hero_sprite);

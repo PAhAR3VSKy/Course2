@@ -1,7 +1,11 @@
 ﻿  Source.cpp
-c:\users\paharevsky\source\repos\battle\battle\source.cpp(24): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
-c:\users\paharevsky\source\repos\battle\battle\source.cpp(35): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-c:\users\paharevsky\source\repos\battle\battle\source.cpp(36): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-c:\users\paharevsky\source\repos\battle\battle\source.cpp(37): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-c:\users\paharevsky\source\repos\battle\battle\source.cpp(38): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-  Battle.vcxproj -> C:\Users\paharevsky\source\repos\Battle\x64\Debug\Battle.exe
+c:\projectgit\course2\battle\battle\source.cpp(27): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
+c:\projectgit\course2\battle\battle\source.cpp(40): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+c:\projectgit\course2\battle\battle\source.cpp(44): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+c:\projectgit\course2\battle\battle\source.cpp(48): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+c:\projectgit\course2\battle\battle\source.cpp(51): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+c:\projectgit\course2\battle\battle\source.cpp(56): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+c:\projectgit\course2\battle\battle\source.cpp(59): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+c:\projectgit\course2\battle\battle\source.cpp(64): warning C4244: +=: преобразование "double" в "float", возможна потеря данных
+c:\projectgit\course2\battle\battle\source.cpp(67): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  Battle.vcxproj -> C:\projectGit\Course2\Battle\x64\Debug\Battle.exe
