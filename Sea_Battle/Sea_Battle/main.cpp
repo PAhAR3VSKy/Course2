@@ -2,13 +2,32 @@
 
 using namespace sf; // подключаем пространство имён sf
 
+class Battle
+{
+private:
+	int x, y;
+public:
+	String file;
+	Image image;
+	Texture texture;
+	Sprite sprite;
+	Battle(String);
+};
+
+Battle::Battle(String F)
+{
+	file = F;
+	image.loadFromFile("..\\images\\" + file);
+
+}
+
 int main()
 {
 	// Объект, который, собственно, является главным окном приложения
 	RenderWindow window(VideoMode(800, 600), "SFML Works!");
 
 	Image map_images;
-	map_images.loadFromFile("..\\images\\map.jpg");
+	map_images.loadFromFile("..\\images\\map.png");
 
 	Texture map_texture;
 	map_texture.loadFromImage(map_images);
@@ -31,7 +50,7 @@ int main()
 		// Установка цвета фона
 		window.clear();
 
-		map_sprite.setScale(0.5, 0.5);
+		
 
 		// Отрисовка круга
 		window.draw(map_sprite);
