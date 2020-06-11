@@ -28,13 +28,13 @@ void setRandShip(int sizeShip, int numShips)
 	int countTact = 0;
 	while (countShip < numShips)
 	{
-		countTact++;
+		/*countTact++;
 
-		if (countTact > 1000)
-			break;
+		if (countTact > 10)
+			break;*/
 
-		x = rand() % 9 + 1;
-		y = rand() % 9 + 1;
+		x = rand() % 10;
+		y = rand() % 10;
 
 		int temp_x = x;
 		int temp_y = y;

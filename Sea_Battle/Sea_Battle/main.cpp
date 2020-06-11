@@ -30,6 +30,15 @@ int main()
 	// Объект, который, собственно, является главным окном приложения
 	RenderWindow window(VideoMode(800, 600), "SFML Works!");
 
+	bool isMove = false;
+	float dX = 0;
+	float dY = 0;
+
+	setRandShip(4, 1);	//установка кораблей в рандомном месте
+	setRandShip(3, 2);
+	setRandShip(2, 3);
+	setRandShip(1, 4);
+
 	Image map_images;
 	map_images.loadFromFile("..\\images\\map.png");
 
@@ -45,24 +54,33 @@ int main()
 	// Главный цикл приложения: выполняется, пока открыто окно
 	while (window.isOpen())
 	{
+
+		Vector2i pixelPos = Mouse::getPosition(window);
+		Vector2f pos = window.mapPixelToCoords(pixelPos);
+		//std::cout << pixelPos.x<< " ";//смотрим на координату Х позиции курсора в консоли (она не будет больше ширины окна)
+		std::cout << pos.x <<" "<<pos.y<< "\n";//смотрим на Х,которая преобразовалась в мировые координаты
 		// Обрабатываем очередь событий в цикле
 		Event event;
 		while (window.pollEvent(event))
 		{
+			
 			// Пользователь нажал на «крестик» и хочет закрыть окно?
 			if (event.type == Event::Closed)
 				window.close(); // тогда закрываем его
+
+			
 		}
 		// Установка цвета фона
 		window.clear();
 
+		if (event.type == Event::MouseButtonPressed)//удаление частей кораблей
+			if (event.key.code == Mouse::Left)
+			{
 
-		// Отрисовка круга
+				TileMap[((int)pos.y / 50) - 1][((int)pos.x / 50) - 1] = '0';
+			}
+		// Отрисовка кораблей
 		window.draw(map_sprite);
-		setRandShip(4, 1);
-		setRandShip(3, 2);
-		setRandShip(2, 3);
-		setRandShip(1, 4);
 		for (int i = 0; i < HEIGHT_MAP; i++)
 		{
 			for (int j = 0; j < WIDTH_MAP; j++)
@@ -76,6 +94,11 @@ int main()
 				}
 
 			}
+		}
+
+		if (Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+
 		}
 
 		// Отрисовка окна
