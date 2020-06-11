@@ -6,7 +6,7 @@ using namespace sf;
 const int HEIGHT_MAP = 10;
 const int WIDTH_MAP = 10;
 
-String TileMap[HEIGHT_MAP] = {
+String TileMap[HEIGHT_MAP][WIDTH_MAP] = {
 	"0000000000",
 	"0000000000",
 	"0000000000",
@@ -33,8 +33,8 @@ void setRandShip(int sizeShip, int numShips)
 		if (countTact > 1000)
 			break;
 
-		x = rand() % 10;
-		y = rand() % 10;
+		x = rand() % 9 + 1;
+		y = rand() % 9 + 1;
 
 		int temp_x = x;
 		int temp_y = y;
@@ -45,15 +45,15 @@ void setRandShip(int sizeShip, int numShips)
 
 		for (int i = 0; i < sizeShip; i++)
 		{
-			if (x <= 0 || y <= 0 || x >= 10 || y >= 10)
+			if (x < 0 || y < 0 || x >= 10 || y >= 10)
 			{
 				settings_is_possible = 0;
 				break;
 			}
 
-			if (TileMap[x    ][y    ] == '1' ||
-				TileMap[x    ][y + 1] == '1' ||
-				TileMap[x    ][y - 1] == '1' ||
+			if (TileMap[x	][y		] == '1' ||
+				TileMap[x	][y+1	] == '1' ||
+				TileMap[x	][y-1	] == '1' ||
 				TileMap[x + 1][y    ] == '1' ||
 				TileMap[x + 1][y + 1] == '1' ||
 				TileMap[x + 1][y - 1] == '1' ||

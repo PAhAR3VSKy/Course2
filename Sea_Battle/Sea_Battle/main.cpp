@@ -77,9 +77,6 @@ int main()
 
 			}
 		}
-		/*ship.sprite.setPosition(50, 50);
-
-		window.draw(ship.sprite);*/
 
 		// Отрисовка окна
 		window.display();
