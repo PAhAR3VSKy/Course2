@@ -1,5 +1,6 @@
 ﻿  main.cpp
-c:\projectgit\course2\sea_battle\sea_battle\map.h(24): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-c:\projectgit\course2\sea_battle\sea_battle\main.cpp(92): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-c:\projectgit\course2\sea_battle\sea_battle\main.cpp(99): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-  Sea_Battle.vcxproj -> C:\projectGit\Course2\Sea_Battle\Debug\Sea_Battle.exe
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(29): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(112): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(119): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(126): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  Sea_Battle.vcxproj -> D:\ProjectGit\Course2\Sea_Battle\Debug\Sea_Battle.exe
