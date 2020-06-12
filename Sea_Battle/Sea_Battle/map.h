@@ -6,6 +6,8 @@ using namespace sf;
 const int HEIGHT_MAP = 10;
 const int WIDTH_MAP = 10;
 
+
+
 String TileMap[HEIGHT_MAP] = {
 	"0000000000",
 	"0000000000",
@@ -31,6 +33,15 @@ String TileMapBot[HEIGHT_MAP] = {
 	"0000000000",
 	"0000000000"
 };
+
+void newGameMap()
+{
+	for (int i = 0; i < TileMap->getSize(); i++)
+	{
+		TileMap[i] = "0000000000";
+		TileMapBot[i] = "0000000000";
+	}
+}
 
 void setRandShipBot(int sizeShip, int numShips)
 {

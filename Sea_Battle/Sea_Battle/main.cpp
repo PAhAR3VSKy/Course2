@@ -1,11 +1,9 @@
-#pragma comment(lib, "ws2_32.lib")
 #include <SFML/Graphics.hpp>
+#include <SFML/Network.hpp>
 #include <iostream>
 #include "map.h"
-#include "game.h"
 #include "windows.h"
-#include <winsock2.h>
-#pragma warning(disable: 4996)
+
 
 using namespace sf; // подключаем пространство имён sf
 
@@ -25,7 +23,24 @@ public:
 	int getX();
 	int getY();
 };
+Battle Client(Battle data)
+{
+	IpAddress ip = IpAddress::getLocalAddress();
+	TcpSocket socket;
+	std::size_t received;
+	int x;
+	int y;
+	int shoot = 1;
+	socket.connect(ip, 2000);
 
+	socket.send((char*)&shoot, sizeof(shoot));
+
+	socket.receive((char*)&x, sizeof(x), received);
+	socket.receive((char*)&y, sizeof(x), received);
+	data.setX(x);
+	data.setY(y);
+	return data;
+}
 Battle::Battle(String F)
 {
 	file = F;
@@ -39,50 +54,93 @@ void Battle::setY(int y) { this->y = y; }
 int Battle::getX() { return this->x; }
 int Battle::getY() { return this->y; }
 
-int clientSend(Battle data)
+void menu(RenderWindow& window)
 {
+	Texture newGameTexture, exitGameTexture, aboutTexture, textureBackground;
+	newGameTexture.loadFromFile("..\\images\\new_game.png");
+	aboutTexture.loadFromFile("..\\images\\about_game.png");
+	exitGameTexture.loadFromFile("..\\images\\exit_game.png");
+	textureBackground.loadFromFile("..\\images\\background.jpg");
+	Sprite	menuNewGame(newGameTexture),
+			menuExitGame(exitGameTexture),
+			menuAbout(aboutTexture),
+			menuBackground(textureBackground);
 
-	WSAData wsaData;
-	WORD DLLVersion = MAKEWORD(2, 1); //Версия библиотеки
-	if (WSAStartup(DLLVersion, &wsaData) != 0) //Загрузка библиотеки
+	menuNewGame.scale(0.3, 0.3);
+	menuExitGame.scale(0.3, 0.3);
+	menuAbout.scale(0.3, 0.3);
+	menuBackground.scale(0.23, 0.28);
+
+	bool isMenu = true;
+	int menuNum = 0;
+	menuNewGame.setPosition(100, 30);
+	menuExitGame.setPosition(100, 90);
+	menuAbout.setPosition(100, 300);
+	menuBackground.setPosition(345, 0);
+
+	Font font;
+	font.loadFromFile("CyrilicOld.ttf");
+	sf::Text text("", font, 20);
+
+	while (isMenu)
 	{
-		std::cout << "Error" << std::endl;
-		exit(1);
-	};
-	SOCKADDR_IN addr;
-	int sizeofaddr = sizeof(addr);
-	addr.sin_addr.s_addr = inet_addr("127.0.0.1");
-	addr.sin_port = htons(11111);
-	addr.sin_family = AF_INET;
+		menuNewGame.setColor(Color::White);
+		menuExitGame.setColor(Color::White);
+		menuAbout.setColor(Color::White);
+		menuNum = 0;
+		window.clear(Color(129, 181, 221));
 
-	SOCKET Connection = socket(AF_INET, SOCK_STREAM, NULL);
-	if (connect(Connection, (SOCKADDR*)&addr, sizeof(addr)) != 0) { // Проверка успешности соединения
-		std::cout << "Client: failed connect to server \n";
-		return 1;
-	};
-	std::cout << "Connected" << std::endl;
+		if (IntRect(100, 30, 150, 50).contains(Mouse::getPosition(window))) { menuNewGame.setColor(Color::Blue); menuNum = 1; }
+		if (IntRect(100, 300, 300, 150).contains(Mouse::getPosition(window))) { menuAbout.setColor(Color::Blue); menuNum = 2; }
+		if (IntRect(100, 90, 150, 50).contains(Mouse::getPosition(window))) { menuExitGame.setColor(Color::Blue); menuNum = 3; }
 
-	int sender = 1;
-	int x, y;
-	send(Connection, (char*)&sender, sizeof(sender), NULL);
+		if (Mouse::isButtonPressed(Mouse::Left))
+		{
+			
 
-	recv(Connection, (char*)&x, sizeof(x), NULL);
-	recv(Connection, (char*)&y, sizeof(y), NULL);
+			if (menuNum == 1) isMenu = false;//если нажали первую кнопку, то выходим из меню 
+			if (menuNum == 2)
+			{ 
+				text.setString("Игра морской бой.\n"
+					"Создана студентами Гаськовым Николаем и Захаровым Богданом, группы АВТ - 813, НГТУ.\n"
+					"Правила игры:\n"
+					"-Если выстрел пришёлся в клетку, не занятую ни одним кораблём противника,\n"
+					"то  стрелявший игрок ставит на чужом квадрате в этом месте точку.\n"
+					"Право хода переходит к сопернику.\n"
+					"-Если выстрел пришёлся в клетку, где находится многопалубный корабль\n"
+					"(размером больше чем 1 клетка),\n"
+					"то стрелявший игрок ставит на чужом поле в эту клетку красный квадратик.\n"
+					"Стрелявший игрок получает право на ещё один выстрел.\n"
+					"-Если выстрел пришёлся в клетку, где находится однотрубный корабль,\n"
+					"или последнюю непоражённую клетку многопалубного корабля,\n"
+					"то  стрелявший игрок получает право на ещё один выстрел.\n"
+					"\nЧтобы вернуться назад нажмите Esc =)\n");
+				text.setPosition(360, 100);
+				window.draw(text);
+				window.draw(menuAbout); 
+				window.display(); 				
+				while (!Keyboard::isKeyPressed(Keyboard::Escape));
+			}
+			if (menuNum == 3) { window.close(); isMenu = false; }
+		}
+		window.draw(menuBackground);
+		window.draw(menuNewGame);
+		window.draw(menuAbout);
+		window.draw(menuExitGame);
 
-	data.setX(x);
-	data.setY(y);
-	return 0;
+		window.display();
+	}
 }
-
 
 int main()
 {
+	int count_ships_player = 20;
+	int count_ships_bot = 20;
 	srand(time(NULL));
 	// Объект, который, собственно, является главным окном приложения
-	RenderWindow window(VideoMode(1200, 600), "SFML Works!");
-
+	RenderWindow window(VideoMode(1200, 600), "Sea battle");
+	menu(window);
 	Battle data;
-
 	bool isMove = false;
 	bool turn = true;
 	float dX = 0;
@@ -93,7 +151,7 @@ int main()
 	setRandShipPlayer(2, 3);
 	setRandShipPlayer(1, 4);
 
-	setRandShipBot(4, 1);	//установка кораблей для бота в рандомном месте
+	setRandShipBot(4, 1);		//установка кораблей для бота в рандомном месте
 	setRandShipBot(3, 2);
 	setRandShipBot(2, 3);
 	setRandShipBot(1, 4);
@@ -115,6 +173,8 @@ int main()
 	Battle ship("ship.png");
 	Battle ship_rip("ship_rip.png");
 	Battle ship_miss("miss.png");
+	Battle win("win.jpg");
+	Battle lose("lose.jpg");
 	ship_miss.texture.setSmooth(true);	//сглаживание на спрайте промаха
 
 	ship_miss.sprite.scale(0.5, 0.5);	//уменьшили спрайт промаха
@@ -125,7 +185,6 @@ int main()
 
 		Vector2i pixelPos = Mouse::getPosition(window);
 		Vector2f pos = window.mapPixelToCoords(pixelPos);	//получение координат мышки
-		
 		// Обрабатываем очередь событий в цикле
 		Event event;
 		while (window.pollEvent(event))
@@ -139,45 +198,105 @@ int main()
 		}
 		// Установка цвета фона
 		window.clear();
+		if (count_ships_bot == 19)
+		{
+			count_ships_bot = 20;
+			Sleep(1000);
+			newGameMap();
+			setRandShipPlayer(4, 1);	//установка кораблей для игрока в рандомном месте
+			setRandShipPlayer(3, 2);
+			setRandShipPlayer(2, 3);
+			setRandShipPlayer(1, 4);
+
+			setRandShipBot(4, 1);		//установка кораблей для бота в рандомном месте
+			setRandShipBot(3, 2);
+			setRandShipBot(2, 3);
+			setRandShipBot(1, 4);
+
+			win.sprite.setPosition(350, 0);
+			window.draw(win.sprite);
+			window.display();
+			Sleep(2500);
+
+			menu(window);
+			
+		}
+		else if (count_ships_player == 19)
+		{
+			count_ships_player = 20;
+
+			Sleep(1000);
+			newGameMap();
+			setRandShipPlayer(4, 1);	//установка кораблей для игрока в рандомном месте
+			setRandShipPlayer(3, 2);
+			setRandShipPlayer(2, 3);
+			setRandShipPlayer(1, 4);
+
+			setRandShipBot(4, 1);		//установка кораблей для бота в рандомном месте
+			setRandShipBot(3, 2);
+			setRandShipBot(2, 3);
+			setRandShipBot(1, 4);
+
+			lose.sprite.setPosition(260, 0);
+			window.draw(lose.sprite);
+			window.display();
+			Sleep(2500);
+			
+			menu(window);
+		}
 		switch (turn)
 		{
 		case true:
 			if (event.type == Event::MouseButtonPressed)//уничтожение кораблей
 				if (event.key.code == Mouse::Left)
 				{
+					if (pos.y > 550 || pos.y < 50 || pos.x < 650 || pos.x > 1150)
+						break;
 					if (TileMapBot[((int)pos.y / 50) - 1][(((int)pos.x - 600) / 50) - 1] == '1')
+					{
 						TileMapBot[((int)pos.y / 50) - 1][(((int)pos.x - 600) / 50) - 1] = 'x';
-					turn = false;
+						count_ships_bot--;
+					}
+					
 					Sleep(100);
 				}
 			if (event.type == Event::MouseButtonPressed)//промах
 				if (event.key.code == Mouse::Left)
 				{
+					if (pos.y > 550 || pos.y < 50 || pos.x < 650 || pos.x > 1150)
+						break;
 					if (TileMapBot[((int)pos.y / 50) - 1][(((int)pos.x - 600) / 50) - 1] == '0')
+					{
 						TileMapBot[((int)pos.y / 50) - 1][(((int)pos.x - 600) / 50) - 1] = '-';
-					turn = false;
+						turn = false;
+					}
 					Sleep(100);
 				}
-			
+
 			break;
 		case false:
 			int x, y;
-			do
-			{
-				clientSend(data);
+			do{
+				data=Client(data);
 				x = data.getX();
 				y = data.getY();
 			} while (TileMap[x][y] == 'x' || TileMap[x][y] == '-');
 			if (TileMap[x][y] == '1')
+			{
 				TileMap[x][y] = 'x';
+				count_ships_player--;
+				Sleep(500);
+			}
 			if (TileMap[x][y] == '0')
+			{
 				TileMap[x][y] = '-';
-			turn = true;
+				turn = true;
+				Sleep(500);
+			}
 			break;
 		default:
 			break;
 		}
-		
 		// Отрисовка карты
 		window.draw(map_sprite);
 		window.draw(map_sprite_bot);
