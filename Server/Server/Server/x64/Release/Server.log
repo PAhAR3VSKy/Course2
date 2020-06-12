@@ -1,0 +1,6 @@
+﻿  Source.cpp
+d:\projectgit\course2\server\server\server\source.cpp(9): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Создание кода
+  All 2 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  Server.vcxproj -> D:\ProjectGit\Course2\Server\Server\x64\Release\Server.exe

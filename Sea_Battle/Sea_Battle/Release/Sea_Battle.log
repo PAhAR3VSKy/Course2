@@ -1,0 +1,17 @@
+﻿  main.cpp
+d:\projectgit\course2\sea_battle\sea_battle\map.h(39): warning C4018: <: несоответствие типов со знаком и без знака
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(69): warning C4305: аргумент: усечение из "double" в "float"
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(70): warning C4305: аргумент: усечение из "double" в "float"
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(71): warning C4305: аргумент: усечение из "double" в "float"
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(72): warning C4305: аргумент: усечение из "double" в "float"
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(139): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(311): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(318): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(325): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(333): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(340): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(299): warning C4809: в операторе switch имеется ненужная метка "default"; все возможные метки "case" уже заданы
+  Создание кода
+  All 85 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  Sea_Battle.vcxproj -> D:\ProjectGit\Course2\Sea_Battle\Release\Sea_Battle.exe
