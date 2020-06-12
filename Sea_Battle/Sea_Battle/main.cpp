@@ -50,6 +50,7 @@ int main()
 	map_sprite.setPosition(0, 0);
 
 	Battle ship("ship.png");
+	Battle ship_rip("ship_rip.png");
 
 	// Главный цикл приложения: выполняется, пока открыто окно
 	while (window.isOpen())
@@ -57,8 +58,7 @@ int main()
 
 		Vector2i pixelPos = Mouse::getPosition(window);
 		Vector2f pos = window.mapPixelToCoords(pixelPos);
-		//std::cout << pixelPos.x<< " ";//смотрим на координату Х позиции курсора в консоли (она не будет больше ширины окна)
-		std::cout << pos.x <<" "<<pos.y<< "\n";//смотрим на Х,которая преобразовалась в мировые координаты
+		
 		// Обрабатываем очередь событий в цикле
 		Event event;
 		while (window.pollEvent(event))
@@ -76,8 +76,8 @@ int main()
 		if (event.type == Event::MouseButtonPressed)//удаление частей кораблей
 			if (event.key.code == Mouse::Left)
 			{
-
-				TileMap[((int)pos.y / 50) - 1][((int)pos.x / 50) - 1] = '0';
+				if(TileMap[((int)pos.y / 50) - 1][((int)pos.x / 50) - 1] == '1')
+					TileMap[((int)pos.y / 50) - 1][((int)pos.x / 50) - 1] = 'x';
 			}
 		// Отрисовка кораблей
 		window.draw(map_sprite);
@@ -92,7 +92,13 @@ int main()
 					ship.sprite.setPosition(j * 50 + 50, i * 50 + 50);
 					window.draw(ship.sprite);
 				}
+				if (TileMap[i][j] == 'x')
+				{
+					ship_rip.sprite.setTextureRect(IntRect(50, 50, 50, 50));
 
+					ship_rip.sprite.setPosition(j * 50 + 50, i * 50 + 50);
+					window.draw(ship_rip.sprite);
+				}
 			}
 		}
 
