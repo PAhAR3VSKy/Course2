@@ -12,6 +12,8 @@ d:\projectgit\course2\sea_battle\sea_battle\main.cpp(333): warning C4244: арг
 d:\projectgit\course2\sea_battle\sea_battle\main.cpp(340): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 d:\projectgit\course2\sea_battle\sea_battle\main.cpp(299): warning C4809: в операторе switch имеется ненужная метка "default"; все возможные метки "case" уже заданы
   Создание кода
-  All 85 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  1 of 85 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
   Sea_Battle.vcxproj -> D:\ProjectGit\Course2\Sea_Battle\Release\Sea_Battle.exe

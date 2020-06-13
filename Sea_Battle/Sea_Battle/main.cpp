@@ -198,7 +198,7 @@ int main()
 		}
 		// Установка цвета фона
 		window.clear();
-		if (count_ships_bot == 19)
+		if (count_ships_bot == 0)
 		{
 			count_ships_bot = 20;
 			Sleep(1000);
@@ -221,7 +221,7 @@ int main()
 			menu(window);
 			
 		}
-		else if (count_ships_player == 19)
+		else if (count_ships_player == 0)
 		{
 			count_ships_player = 20;
 
