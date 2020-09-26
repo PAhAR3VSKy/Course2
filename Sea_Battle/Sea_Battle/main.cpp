@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 #include <iostream>
+#include <fstream>
 #include "map.h"
 #include "windows.h"
 
@@ -134,6 +135,10 @@ void menu(RenderWindow& window)
 
 int main()
 {
+	std::ofstream out;
+	out.open("..\\Data\\ClientMotion.txt", std::ofstream::out | std::ofstream::trunc);
+	out.close();
+	out.open("..\\Data\\ClientMotion.txt", std::ios::app);
 	int count_ships_player = 20;
 	int count_ships_bot = 20;
 	srand(time(NULL));
@@ -254,6 +259,8 @@ int main()
 						break;
 					if (TileMapBot[((int)pos.y / 50) - 1][(((int)pos.x - 600) / 50) - 1] == '1')
 					{
+						if (out.is_open())
+							out << ((int)pos.y / 50) - 1 << " " << (((int)pos.x - 600) / 50) - 1 << std::endl;
 						TileMapBot[((int)pos.y / 50) - 1][(((int)pos.x - 600) / 50) - 1] = 'x';
 						count_ships_bot--;
 					}
@@ -267,6 +274,8 @@ int main()
 						break;
 					if (TileMapBot[((int)pos.y / 50) - 1][(((int)pos.x - 600) / 50) - 1] == '0')
 					{
+						if (out.is_open())
+							out << ((int)pos.y / 50) - 1 << " " << (((int)pos.x - 600) / 50) - 1 << std::endl;
 						TileMapBot[((int)pos.y / 50) - 1][(((int)pos.x - 600) / 50) - 1] = '-';
 						turn = false;
 					}
@@ -348,6 +357,6 @@ int main()
 		// Отрисовка окна
 		window.display();
 	}
-
+	out.close();
 	return 0;
 }

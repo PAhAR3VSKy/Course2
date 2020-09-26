@@ -1,18 +1,18 @@
 ﻿  main.cpp
 d:\projectgit\course2\sea_battle\sea_battle\map.h(39): warning C4018: <: несоответствие типов со знаком и без знака
-d:\projectgit\course2\sea_battle\sea_battle\main.cpp(69): warning C4305: аргумент: усечение из "double" в "float"
 d:\projectgit\course2\sea_battle\sea_battle\main.cpp(70): warning C4305: аргумент: усечение из "double" в "float"
 d:\projectgit\course2\sea_battle\sea_battle\main.cpp(71): warning C4305: аргумент: усечение из "double" в "float"
 d:\projectgit\course2\sea_battle\sea_battle\main.cpp(72): warning C4305: аргумент: усечение из "double" в "float"
-d:\projectgit\course2\sea_battle\sea_battle\main.cpp(139): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-d:\projectgit\course2\sea_battle\sea_battle\main.cpp(311): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(73): warning C4305: аргумент: усечение из "double" в "float"
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(142): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
 d:\projectgit\course2\sea_battle\sea_battle\main.cpp(318): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 d:\projectgit\course2\sea_battle\sea_battle\main.cpp(325): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-d:\projectgit\course2\sea_battle\sea_battle\main.cpp(333): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(332): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 d:\projectgit\course2\sea_battle\sea_battle\main.cpp(340): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-d:\projectgit\course2\sea_battle\sea_battle\main.cpp(299): warning C4809: в операторе switch имеется ненужная метка "default"; все возможные метки "case" уже заданы
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(347): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\projectgit\course2\sea_battle\sea_battle\main.cpp(306): warning C4809: в операторе switch имеется ненужная метка "default"; все возможные метки "case" уже заданы
   Создание кода
-  1 of 85 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+  15 of 183 functions ( 8.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
